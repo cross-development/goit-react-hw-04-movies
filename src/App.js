@@ -1,24 +1,21 @@
 //Core
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 //Views
 import HomePage from './view/HomePage';
 import MoviesPage from './view/MoviesPage';
 import MovieDetailsPage from './view/MovieDetailsPage';
 import Cast from './view/Cast';
 import Reviews from './view/Reviews';
+//Components
+import Layout from './components/Layout/Layout';
+import Navigation from './components/Navigation/Navigation';
 
 const App = () => {
 	return (
-		<>
-			<ul>
-				<li>
-					<Link to="/">Home</Link>
-				</li>
-				<li>
-					<Link to="/movies">Movies</Link>
-				</li>
-			</ul>
+		<Layout>
+			<Navigation />
+
 			<Switch>
 				<Route path="/" exact component={HomePage} />
 				<Route path="/movies" component={MoviesPage} />
@@ -27,7 +24,7 @@ const App = () => {
 				<Route path="/movies/:movieId/reviews" component={Reviews} />
 				<Route component={HomePage} />
 			</Switch>
-		</>
+		</Layout>
 	);
 };
 
