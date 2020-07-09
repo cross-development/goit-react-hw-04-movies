@@ -10,21 +10,25 @@ import Reviews from './view/Reviews';
 //Components
 import Layout from './components/Layout/Layout';
 import Navigation from './components/Navigation/Navigation';
+//Routes
+import routes from './routes';
 
 const App = () => {
 	return (
-		<Layout>
-			<Navigation />
+		<>
+			<Layout>
+				<Navigation />
+			</Layout>
 
 			<Switch>
-				<Route path="/" exact component={HomePage} />
-				<Route path="/movies" component={MoviesPage} />
-				<Route path="/movies/:movieId" component={MovieDetailsPage} />
-				<Route path="/movies/:movieId/cast" component={Cast} />
-				<Route path="/movies/:movieId/reviews" component={Reviews} />
+				<Route path={routes.home} exact component={HomePage} />
+				<Route path={routes.movies} exact component={MoviesPage} />
+				<Route path={routes.movieDetails} component={MovieDetailsPage} />
+				<Route path={routes.movieCast} component={Cast} />
+				<Route path={routes.movieReview} component={Reviews} />
 				<Route component={HomePage} />
 			</Switch>
-		</Layout>
+		</>
 	);
 };
 
