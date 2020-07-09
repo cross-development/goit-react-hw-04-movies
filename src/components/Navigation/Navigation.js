@@ -1,6 +1,8 @@
 //Core
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+//Routes
+import routes from '../../routes';
 //Styles
 import styles from './Navigation.module.css';
 
@@ -10,7 +12,7 @@ const Navigation = () => {
 			<li>
 				<NavLink
 					exact
-					to="/"
+					to={routes.home}
 					className={styles.navigationLink}
 					activeClassName={styles.navigationLinkActive}
 				>
@@ -19,7 +21,7 @@ const Navigation = () => {
 			</li>
 			<li>
 				<NavLink
-					to="/movies"
+					to={routes.movies}
 					className={styles.navigationLink}
 					activeClassName={styles.navigationLinkActive}
 				>
