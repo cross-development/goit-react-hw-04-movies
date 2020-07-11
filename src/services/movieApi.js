@@ -1,6 +1,12 @@
 const API_KEY = '9e07f05bee226a5aad11e2f836e260f9';
 const baseURL = 'https://api.themoviedb.org/3';
 
+const fetchTrendMovies = () => {
+	return fetch(`${baseURL}/trending/all/week?api_key=${API_KEY}`)
+		.then(response => response.json())
+		.then(data => data.results);
+};
+
 const fetchMoviesByQuery = searchQuery => {
 	return fetch(
 		`${baseURL}/search/movie?api_key=${API_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false`,
@@ -28,6 +34,7 @@ const fetchMoviesReviews = movieId => {
 };
 
 export default {
+	fetchTrendMovies,
 	fetchMoviesByQuery,
 	fetchMoviesDetails,
 	fetchMoviesByCast,

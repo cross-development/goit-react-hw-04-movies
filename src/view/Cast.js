@@ -5,7 +5,7 @@ import React from 'react';
 //Styles
 
 const Cast = () => {
-	return <div></div>;
+	return <div>CAAAAAAAAAAAAAST</div>;
 };
 
 export default Cast;

@@ -1,0 +1,14 @@
+.imgWrapper {
+	height: 100%;
+	width: 100%;
+}
+
+.pageImg {
+	height: 65vh;
+	margin: 0 auto;
+}
+
+.title {
+	text-align: center;
+	text-transform: uppercase;
+}

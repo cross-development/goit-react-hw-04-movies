@@ -5,7 +5,7 @@ import React from 'react';
 //Styles
 
 const Reviews = () => {
-	return <div></div>;
+	return <div>REEEEEEEEEEEEEEEW</div>;
 };
 
 export default Reviews;

@@ -8,8 +8,8 @@ import styles from './Navigation.module.css';
 
 const Navigation = () => {
 	return (
-		<ul>
-			<li>
+		<ul className={styles.navigationList}>
+			<li className={styles.navigationListItem}>
 				<NavLink
 					exact
 					to={routes.home}
@@ -19,7 +19,7 @@ const Navigation = () => {
 					Home
 				</NavLink>
 			</li>
-			<li>
+			<li className={styles.navigationListItem}>
 				<NavLink
 					to={routes.movies}
 					className={styles.navigationLink}

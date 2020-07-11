@@ -2,32 +2,29 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 //Views
-import HomePage from './view/HomePage';
-import MoviesPage from './view/MoviesPage';
-import MovieDetailsPage from './view/MovieDetailsPage';
-import Cast from './view/Cast';
-import Reviews from './view/Reviews';
+import HomePage from '../../view/HomePage';
+import MoviesPage from '../../view/MoviesPage';
+import MovieDetailsPage from '../../view/MovieDetailsPage';
+
+import NotFound from '../../view/NotFound';
 //Components
-import Layout from './components/Layout/Layout';
-import Navigation from './components/Navigation/Navigation';
+import Layout from '../Layout/Layout';
+import Header from '../Header/Header';
 //Routes
-import routes from './routes';
+import routes from '../../routes';
 
 const App = () => {
 	return (
 		<>
 			<Layout>
-				<Navigation />
+				<Header />
+				<Switch>
+					<Route path={routes.home} exact component={HomePage} />
+					<Route path={routes.movieDetails} component={MovieDetailsPage} />
+					<Route path={routes.movies} component={MoviesPage} />
+					<Route component={NotFound} />
+				</Switch>
 			</Layout>
-
-			<Switch>
-				<Route path={routes.home} exact component={HomePage} />
-				<Route path={routes.movies} exact component={MoviesPage} />
-				<Route path={routes.movieDetails} component={MovieDetailsPage} />
-				<Route path={routes.movieCast} component={Cast} />
-				<Route path={routes.movieReview} component={Reviews} />
-				<Route component={HomePage} />
-			</Switch>
 		</>
 	);
 };
