@@ -1,9 +1,7 @@
 //Core
-import React, { Component } from 'react';
+import React, { Component, Suspense, lazy } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 //Views
-import Cast from '../view/Cast';
-import Reviews from '../view/Reviews';
 import NotFound from '../view/NotFound';
 //Components
 import Notification from '../components/Notification/Notification';
@@ -18,9 +16,13 @@ import routes from '../routes';
 //Styles
 import styles from './MovieDetailsPage.module.css';
 
+const Cast = lazy(() => import('../view/Cast' /* webpackChunkName: "cast-view" */));
+const Reviews = lazy(() => import('../view/Reviews' /* webpackChunkName: "reviews-view"*/));
+// const NotFound = lazy(() => import('../view/NotFound' /* webpackChunkName: "reviews-view"*/));
+
 export default class MovieDetailsPage extends Component {
 	state = {
-		movie: null,
+		movie: '',
 		error: null,
 		loading: false,
 	};
@@ -39,11 +41,11 @@ export default class MovieDetailsPage extends Component {
 
 	//TODO: при нажатии кнопки возврат должен быть на страницу поиска фильмов или на главную, в зависимости откуда пришли
 	handleGoBack = () => {
-		const { state } = this.props.location;
+		const { location, history } = this.props;
 		//! при переходе на Cast или Reviews возвращает на предыдущее место в истории. Скорее всего проблема в этом месте
-		return state && state.from
-			? this.props.history.push(state.from)
-			: this.props.history.push(routes.home);
+		return location.state && location.state.from
+			? history.push(location.state.from)
+			: history.push(routes.home);
 	};
 
 	render() {
@@ -56,7 +58,7 @@ export default class MovieDetailsPage extends Component {
 
 				{loading && <Loader onLoad={loading} />}
 
-				{!movie && <Route component={NotFound} />}
+				{movie === null && <NotFound />}
 
 				<div>
 					{!loading && movie && (
@@ -118,10 +120,12 @@ export default class MovieDetailsPage extends Component {
 									</li>
 								</ul>
 
-								<Switch>
-									<Route path={`${match.path}/cast`} component={Cast} />
-									<Route path={`${match.path}/reviews`} component={Reviews} />
-								</Switch>
+								<Suspense fallback={<Loader onLoad={loading} />}>
+									<Switch>
+										<Route path={`${match.path}/cast`} component={Cast} />
+										<Route path={`${match.path}/reviews`} component={Reviews} />
+									</Switch>
+								</Suspense>
 							</div>
 						</>
 					)}
