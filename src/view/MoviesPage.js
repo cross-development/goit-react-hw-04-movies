@@ -9,6 +9,7 @@ import Loader from '../components/Loader/Loader';
 import movieApi from '../services/movieApi';
 //Utils
 import getPosterUrl from '../utils/getPosterUrl';
+import getDefaultPoster from '../assets/default_poster.jpg';
 import getQueryString from '../utils/getQueryString';
 //Styles
 import styles from './MoviesPage.module.css';
@@ -75,10 +76,12 @@ export default class MoviesPage extends Component {
 								>
 									<img
 										className={styles.movieItemImage}
-										src={`${getPosterUrl}${movie.poster_path}`}
-										alt={movie.title || movie.name}
+										src={
+											movie.poster_path ? `${getPosterUrl}${movie.poster_path}` : getDefaultPoster
+										}
+										alt={movie.name || movie.title}
 									/>
-									{movie.title || movie.name}
+									<span>{movie.name || movie.title}</span>
 								</Link>
 								<span className={styles.movieVote}>{movie.vote_average}</span>
 							</li>

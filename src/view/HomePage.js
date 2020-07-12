@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 //Components
 import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
+// import MoviesList from '../components/MoviesList/MoviesList';
 //Services
 import movieApi from '../services/movieApi';
 //Utils
 import getPosterUrl from '../utils/getPosterUrl';
+import getDefaultPoster from '../assets/default_poster.jpg';
 //Routes
 import routes from '../routes';
 //Styles
@@ -40,8 +42,9 @@ export default class HomePage extends Component {
 				{error && <Notification message={error.message} />}
 
 				{loading && <Loader onLoad={loading} />}
+				{/* <MoviesList moviesData={movies} />} */}
 
-				{movies.length > 0 && (
+				{!loading && movies.length > 0 && (
 					<ul className={styles.movieList}>
 						{movies.map(movie => (
 							<li className={styles.movieItem} key={movie.id}>
@@ -54,10 +57,12 @@ export default class HomePage extends Component {
 								>
 									<img
 										className={styles.movieItemImage}
-										src={`${getPosterUrl}${movie.poster_path}`}
-										alt={movie.title || movie.name}
+										src={
+											movie.poster_path ? `${getPosterUrl}${movie.poster_path}` : getDefaultPoster
+										}
+										alt={movie.name || movie.title}
 									/>
-									{movie.title || movie.name}
+									<span>{movie.name || movie.title}</span>
 								</Link>
 								<span className={styles.movieVote}>{movie.vote_average}</span>
 							</li>

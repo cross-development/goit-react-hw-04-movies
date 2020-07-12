@@ -1,7 +1,6 @@
 //Core
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-
 //Components
 import Cast from '../view/Cast';
 import Reviews from '../view/Reviews';
@@ -11,11 +10,14 @@ import Loader from '../components/Loader/Loader';
 import movieApi from '../services/movieApi';
 //Utils
 import getPosterUrl from '../utils/getPosterUrl';
+import getDefaultPoster from '../assets/default_poster.jpg';
 //Routes
 import routes from '../routes';
 //Styles
 import styles from './MovieDetailsPage.module.css';
 
+//TODO: заменить слайс на др.решение
+//TODO: исправить кнопку, чтобы возвращала сразу на результаты поиска
 export default class MovieDetailsPage extends Component {
 	state = {
 		movie: null,
@@ -65,7 +67,9 @@ export default class MovieDetailsPage extends Component {
 							<div className={styles.movieWrapper}>
 								<div className={styles.posterWrapper}>
 									<img
-										src={`${getPosterUrl}${movie.poster_path}`}
+										src={
+											movie.poster_path ? `${getPosterUrl}${movie.poster_path}` : getDefaultPoster
+										}
 										alt={movie.title || movie.name}
 									/>
 								</div>

@@ -1,13 +1,18 @@
 //Core
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import logoPath from '../../assets/movie_logo.png';
+//Routes
+import routes from '../../routes';
 //Styles
 import styles from './Logo.module.css';
 
 const Logo = () => {
 	return (
 		<div className={styles.logoWrapper}>
-			<img src={logoPath} alt="logo" className={styles.logo} />
+			<NavLink exact to={routes.home}>
+				<img src={logoPath} alt="logo" className={styles.logo} />
+			</NavLink>
 		</div>
 	);
 };

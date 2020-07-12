@@ -5,7 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from '../../view/HomePage';
 import MoviesPage from '../../view/MoviesPage';
 import MovieDetailsPage from '../../view/MovieDetailsPage';
-
 import NotFound from '../../view/NotFound';
 //Components
 import Layout from '../Layout/Layout';

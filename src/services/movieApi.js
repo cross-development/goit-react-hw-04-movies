@@ -22,15 +22,15 @@ const fetchMoviesDetails = movieId => {
 };
 
 const fetchMoviesByCast = movieId => {
-	return fetch(`${baseURL}/movie/${movieId}/credits?api_key=${API_KEY}`).then(response =>
-		response.json(),
-	);
+	return fetch(`${baseURL}/movie/${movieId}/credits?api_key=${API_KEY}`)
+		.then(response => response.json())
+		.then(data => data.cast);
 };
 
 const fetchMoviesReviews = movieId => {
-	return fetch(
-		`${baseURL}/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`,
-	).then(response => response.json());
+	return fetch(`${baseURL}/movie/${movieId}/reviews?api_key=${API_KEY}&language=en-US&page=1`)
+		.then(response => response.json())
+		.then(data => data.results);
 };
 
 export default {

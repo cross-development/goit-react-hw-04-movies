@@ -7,7 +7,14 @@ import styles from './Notification.module.css';
 const Notification = ({ message }) => {
 	return (
 		<div className={styles.errorWrapper}>
-			<p>`Woops, something went wrong ${message}`</p>
+			{`${message}` === 'Failed to fetch' ? (
+				<>
+					<p>Sorry!</p>
+					<p>Check your internet connection and try again. We couldn't connect to the server.</p>
+				</>
+			) : (
+				<p>{message}</p>
+			)}
 		</div>
 	);
 };
