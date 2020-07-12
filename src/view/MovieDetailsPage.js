@@ -1,9 +1,11 @@
 //Core
 import React, { Component } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
-//Components
+//Views
 import Cast from '../view/Cast';
 import Reviews from '../view/Reviews';
+import NotFound from '../view/NotFound';
+//Components
 import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
 //Services
@@ -16,8 +18,6 @@ import routes from '../routes';
 //Styles
 import styles from './MovieDetailsPage.module.css';
 
-//TODO: заменить слайс на др.решение
-//TODO: исправить кнопку, чтобы возвращала сразу на результаты поиска
 export default class MovieDetailsPage extends Component {
 	state = {
 		movie: null,
@@ -37,12 +37,13 @@ export default class MovieDetailsPage extends Component {
 			.finally(() => this.setState({ loading: false }));
 	}
 
+	//TODO: при нажатии кнопки возврат должен быть на страницу поиска фильмов или на главную, в зависимости откуда пришли
 	handleGoBack = () => {
 		const { state } = this.props.location;
-
+		//! при переходе на Cast или Reviews возвращает на предыдущее место в истории. Скорее всего проблема в этом месте
 		return state && state.from
 			? this.props.history.push(state.from)
-			: this.props.history.push(routes.movies);
+			: this.props.history.push(routes.home);
 	};
 
 	render() {
@@ -54,6 +55,8 @@ export default class MovieDetailsPage extends Component {
 				{error && <Notification message={error.message} />}
 
 				{loading && <Loader onLoad={loading} />}
+
+				{!movie && <Route component={NotFound} />}
 
 				<div>
 					{!loading && movie && (
@@ -76,7 +79,7 @@ export default class MovieDetailsPage extends Component {
 
 								<div className={styles.detailsWrapper}>
 									<h1>
-										{movie.title || movie.name} ({movie.release_date.slice(0, 4)})
+										{movie.title || movie.name} {movie.release_date.slice(0, 4)}
 									</h1>
 									<p>User Score: {Math.round(movie.popularity)}%</p>
 									<h2>Overview</h2>
@@ -93,7 +96,7 @@ export default class MovieDetailsPage extends Component {
 										<Link
 											to={{
 												pathname: `${match.url}/cast`,
-												state: { from: this.props.location },
+												// state: { from: this.props.location },
 											}}
 											className={styles.additionalInfoLink}
 											activeclassname={styles.additionalInfoLinkActive}
@@ -105,7 +108,7 @@ export default class MovieDetailsPage extends Component {
 										<Link
 											to={{
 												pathname: `${match.url}/reviews`,
-												state: { from: this.props.location },
+												// state: { from: this.props.location },
 											}}
 											className={styles.additionalInfoLink}
 											activeclassname={styles.additionalInfoLinkActive}
@@ -127,5 +130,3 @@ export default class MovieDetailsPage extends Component {
 		);
 	}
 }
-// fetchMoviesByCast
-// fetchMoviesReviews

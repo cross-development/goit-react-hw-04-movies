@@ -46,8 +46,8 @@ export default class Cast extends Component {
 
 				{loading && <Loader onLoad={loading} />}
 
-				{!loading && !error && casts.length === 0 && (
-					<Notification message="There are no actors information for this film" />
+				{!loading && !error && casts.length < 1 && (
+					<Notification message="We don't have any actors for this movie." />
 				)}
 
 				{casts.length > 0 && (

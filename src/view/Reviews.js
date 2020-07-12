@@ -44,7 +44,7 @@ export default class Reviews extends Component {
 				{loading && <Loader onLoad={loading} />}
 
 				{!loading && !error && reviews.length === 0 && (
-					<Notification message="There are no reviews information for this film" />
+					<Notification message="We don't have any reviews for this movie." />
 				)}
 
 				{reviews.length > 0 && (

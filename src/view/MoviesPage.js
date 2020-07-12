@@ -9,8 +9,8 @@ import Loader from '../components/Loader/Loader';
 import movieApi from '../services/movieApi';
 //Utils
 import getPosterUrl from '../utils/getPosterUrl';
-import getDefaultPoster from '../assets/default_poster.jpg';
 import getQueryString from '../utils/getQueryString';
+import getDefaultPoster from '../assets/default_poster.jpg';
 //Styles
 import styles from './MoviesPage.module.css';
 
@@ -92,18 +92,3 @@ export default class MoviesPage extends Component {
 		);
 	}
 }
-
-// adult: false
-// backdrop_path: "/cD2GDhwzEOePDzGOqAqxiZZLFeX.jpg"
-// genre_ids: (2) [35, 37]
-// id: 11694
-// original_language: "en"
-// original_title: "Cat Ballou"
-// overview: "A woman seeking revenge for her murdered father hires a famous gunman, but he's very different from what she expects."
-// popularity: 12.948
-// poster_path: "/fSebGYTxVrHXE4y3Su5uwJSEtni.jpg"
-// release_date: "1965-06-24"
-// title: "Cat Ballou"
-// video: false
-// vote_average: 6.7
-// vote_count: 120
