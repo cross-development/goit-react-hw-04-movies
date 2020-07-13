@@ -64,7 +64,7 @@ export default class MovieDetailsPage extends Component {
 					{!loading && movie && (
 						<>
 							<div className={styles.buttonWrapper}>
-								<button type="button" onClick={this.handleGoBack}>
+								<button className={styles.goBackBtn} type="button" onClick={this.handleGoBack}>
 									Go Back
 								</button>
 							</div>
