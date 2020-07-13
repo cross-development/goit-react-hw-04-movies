@@ -2,7 +2,7 @@
 import React, { Component, Suspense, lazy } from 'react';
 import { Route, Switch, Link } from 'react-router-dom';
 //Views
-import NotFound from '../view/NotFound';
+import NotFoundPage from './NotFoundPage';
 //Components
 import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
@@ -10,15 +10,17 @@ import Loader from '../components/Loader/Loader';
 import movieApi from '../services/movieApi';
 //Utils
 import getPosterUrl from '../utils/getPosterUrl';
+//Assets
 import getDefaultPoster from '../assets/default_poster.jpg';
 //Routes
 import routes from '../routes';
 //Styles
 import styles from './MovieDetailsPage.module.css';
-
+//AsyncComponents
 const Cast = lazy(() => import('../view/Cast' /* webpackChunkName: "cast-view" */));
 const Reviews = lazy(() => import('../view/Reviews' /* webpackChunkName: "reviews-view"*/));
-// const NotFound = lazy(() => import('../view/NotFound' /* webpackChunkName: "reviews-view"*/));
+
+//TODO: вынести детали фильма, кнопку гоу бек, доп.инфо с актерами и ревью в отдельные компоненты
 
 export default class MovieDetailsPage extends Component {
 	state = {
@@ -58,7 +60,7 @@ export default class MovieDetailsPage extends Component {
 
 				{loading && <Loader onLoad={loading} />}
 
-				{movie === null && <NotFound />}
+				{movie === null && <NotFoundPage />}
 
 				<div>
 					{!loading && movie && (
@@ -97,7 +99,7 @@ export default class MovieDetailsPage extends Component {
 									<li className={styles.additionalInfoListItem}>
 										<Link
 											to={{
-												pathname: `${match.url}/cast`,
+												pathname: `${match.url}/${routes.movieCast}`,
 												// state: { from: this.props.location },
 											}}
 											className={styles.additionalInfoLink}
@@ -109,7 +111,7 @@ export default class MovieDetailsPage extends Component {
 									<li className={styles.additionalInfoListItem}>
 										<Link
 											to={{
-												pathname: `${match.url}/reviews`,
+												pathname: `${match.url}/${routes.movieReview}`,
 												// state: { from: this.props.location },
 											}}
 											className={styles.additionalInfoLink}

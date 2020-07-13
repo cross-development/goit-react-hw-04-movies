@@ -9,6 +9,7 @@ import Loader from '../components/Loader/Loader';
 import movieApi from '../services/movieApi';
 //Utils
 import getPosterUrl from '../utils/getPosterUrl';
+//Assets
 import getDefaultPoster from '../assets/default_poster.jpg';
 //Routes
 import routes from '../routes';
@@ -42,29 +43,27 @@ export default class HomePage extends Component {
 				{error && <Notification message={error.message} />}
 
 				{loading && <Loader onLoad={loading} />}
-				{/* <MoviesList moviesData={movies} />} */}
+				{/* {!loading && movies.length > 0 && <MoviesList moviesData={movies} />} */}
 
 				{!loading && movies.length > 0 && (
 					<ul className={styles.movieList}>
-						{movies.map(movie => (
-							<li className={styles.movieItem} key={movie.id}>
+						{movies.map(({ id, poster_path, name, title, vote_average }) => (
+							<li className={styles.movieItem} key={id}>
 								<Link
 									className={styles.movieItemLink}
 									to={{
-										pathname: `${routes.movies}/${movie.id}`,
+										pathname: `${routes.movies}/${id}`,
 										// state: { from: this.props.location },
 									}}
 								>
 									<img
 										className={styles.movieItemImage}
-										src={
-											movie.poster_path ? `${getPosterUrl}${movie.poster_path}` : getDefaultPoster
-										}
-										alt={movie.name || movie.title}
+										src={poster_path ? `${getPosterUrl}${poster_path}` : getDefaultPoster}
+										alt={name || title}
 									/>
-									<span>{movie.name || movie.title}</span>
+									<span>{name || title}</span>
 								</Link>
-								<span className={styles.movieVote}>{movie.vote_average}</span>
+								<span className={styles.movieVote}>{vote_average}</span>
 							</li>
 						))}
 					</ul>

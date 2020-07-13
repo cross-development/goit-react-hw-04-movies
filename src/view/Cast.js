@@ -3,13 +3,9 @@ import React, { Component } from 'react';
 //Components
 import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
+import CastList from '../components/CastList/CastList';
 //Services
 import movieApi from '../services/movieApi';
-//Utils
-import getPosterUrl from '../utils/getPosterUrl';
-import getDefaultAvatar from '../assets/unnamed.jpg';
-//Styles
-import style from './Cast.module.css';
 
 export default class Cast extends Component {
 	state = {
@@ -50,20 +46,7 @@ export default class Cast extends Component {
 					<Notification message="We don't have any actors for this movie." />
 				)}
 
-				{casts.length > 0 && (
-					<ul className={style.castsList}>
-						{casts.map(({ cast_id, name, profile_path }) => (
-							<li key={cast_id} className={style.castsListItem}>
-								<img
-									src={profile_path ? `${getPosterUrl}${profile_path}` : getDefaultAvatar}
-									alt={name}
-									className={style.actorAvatar}
-								/>
-								<span className={style.actorName}>{name}</span>
-							</li>
-						))}
-					</ul>
-				)}
+				{casts.length > 0 && <CastList casts={casts} />}
 			</>
 		);
 	}

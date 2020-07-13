@@ -1,7 +1,7 @@
 //Core
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-//Utils
+//Assets
 import logoPath from '../../assets/movie_logo.png';
 //Routes
 import routes from '../../routes';

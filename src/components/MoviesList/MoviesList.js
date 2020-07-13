@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 //Utils
 import getPosterUrl from '../../utils/getPosterUrl';
+//Assets
 import getDefaultPoster from '../../assets/default_poster.jpg';
 //Routes
 import routes from '../../routes';
@@ -13,24 +14,24 @@ import styles from './MoviesList.module.css';
 const MoviesList = ({ moviesData }) => {
 	return (
 		<ul className={styles.movieList}>
-			{moviesData.map(movie => (
-				<li className={styles.movieItem} key={movie.id}>
+			{moviesData.map(({ id, poster_path, name, title, vote_average }) => (
+				<li className={styles.movieItem} key={id}>
 					<Link
 						className={styles.movieItemLink}
 						to={{
-							pathname: `${routes.movies}/${movie.id}`,
+							pathname: `${routes.movies}/${id}`,
+							state: { from: this.props.location },
 							// pathname: `${match.url}/${movie.id}`,
-							// state: { from: this.props.location },
 						}}
 					>
 						<img
 							className={styles.movieItemImage}
-							src={movie.poster_path ? `${getPosterUrl}${movie.poster_path}` : getDefaultPoster}
-							alt={movie.name || movie.title}
+							src={poster_path ? `${getPosterUrl}${poster_path}` : getDefaultPoster}
+							alt={name || title}
 						/>
-						<span>{movie.name || movie.title}</span>
+						<span>{name || title}</span>
 					</Link>
-					<span className={styles.movieVote}>{movie.vote_average}</span>
+					<span className={styles.movieVote}>{vote_average}</span>
 				</li>
 			))}
 		</ul>

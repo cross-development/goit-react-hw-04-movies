@@ -3,10 +3,9 @@ import React, { Component } from 'react';
 //Components
 import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
+import ReviewsList from '../components/ReviewsList/ReviewsList';
 //Services
 import movieApi from '../services/movieApi';
-//Styles
-import styles from './Reviews.module.css';
 
 export default class Reviews extends Component {
 	state = {
@@ -43,25 +42,11 @@ export default class Reviews extends Component {
 
 				{loading && <Loader onLoad={loading} />}
 
-				{!loading && !error && reviews.length === 0 && (
+				{!loading && !error && reviews.length < 1 && (
 					<Notification message="We don't have any reviews for this movie." />
 				)}
 
-				{reviews.length > 0 && (
-					<ul className={styles.reviewList}>
-						{reviews.map(({ id, author, content, url }) => (
-							<li key={id} className={styles.reviewItem}>
-								<h3 className={styles.reviewItemTitle}>
-									Written by{' '}
-									<a href={url} target="_blank" rel="noopener noreferrer">
-										{author}
-									</a>
-								</h3>
-								<p className={styles.reviewItemContent}>{content}</p>
-							</li>
-						))}
-					</ul>
-				)}
+				{reviews.length > 0 && <ReviewsList reviews={reviews} />}
 			</>
 		);
 	}

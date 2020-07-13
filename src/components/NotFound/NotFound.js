@@ -2,9 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 //Utils
-import imgPath from '../assets/not_found_img.jpg';
+import imgPath from '../../assets/not_found_img.jpg';
 //Routes
-import routes from '../routes';
+import routes from '../../routes';
 //Style
 import styles from './NotFound.module.css';
 

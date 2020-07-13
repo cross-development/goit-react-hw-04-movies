@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Notification from '../components/Notification/Notification';
 import SearchForm from '../components/SearchForm/SearchForm';
 import Loader from '../components/Loader/Loader';
+// import MoviesList from '../components/MoviesList/MoviesList';
 //Services
 import movieApi from '../services/movieApi';
 //Utils
@@ -14,6 +15,7 @@ import getDefaultPoster from '../assets/default_poster.jpg';
 //Styles
 import styles from './MoviesPage.module.css';
 
+//TODO: вынести список и айтемы в отдельный компонент
 export default class MoviesPage extends Component {
 	state = {
 		movies: [],
@@ -63,27 +65,27 @@ export default class MoviesPage extends Component {
 
 				{loading && <Loader onLoad={loading} />}
 
+				{/* {!loading && movies.length > 0 && <MoviesList moviesData={movies} />} */}
+
 				{!loading && movies.length > 0 && (
 					<ul className={styles.movieList}>
-						{movies.map(movie => (
-							<li className={styles.movieItem} key={movie.id}>
+						{movies.map(({ id, poster_path, name, title, vote_average }) => (
+							<li className={styles.movieItem} key={id}>
 								<Link
 									className={styles.movieItemLink}
 									to={{
-										pathname: `${match.url}/${movie.id}`,
+										pathname: `${match.url}/${id}`,
 										state: { from: this.props.location },
 									}}
 								>
 									<img
 										className={styles.movieItemImage}
-										src={
-											movie.poster_path ? `${getPosterUrl}${movie.poster_path}` : getDefaultPoster
-										}
-										alt={movie.name || movie.title}
+										src={poster_path ? `${getPosterUrl}${poster_path}` : getDefaultPoster}
+										alt={name || title}
 									/>
-									<span>{movie.name || movie.title}</span>
+									<span>{name || title}</span>
 								</Link>
-								<span className={styles.movieVote}>{movie.vote_average}</span>
+								<span className={styles.movieVote}>{vote_average}</span>
 							</li>
 						))}
 					</ul>
