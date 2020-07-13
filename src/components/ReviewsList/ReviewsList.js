@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 //Styles
 import styles from './ReviewsList.module.css';
 
-const ReviewsList = ({ reviews }) => {
+const ReviewsList = ({ reviewsData }) => {
 	return (
 		<ul className={styles.reviewList}>
-			{reviews.map(({ id, author, content, url }) => (
+			{reviewsData.map(({ id, author, content, url }) => (
 				<li key={id} className={styles.reviewItem}>
 					<h3 className={styles.reviewItemTitle}>
 						Written by{' '}
@@ -23,7 +23,7 @@ const ReviewsList = ({ reviews }) => {
 };
 
 ReviewsList.propTypes = {
-	reviews: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+	reviewsData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default ReviewsList;

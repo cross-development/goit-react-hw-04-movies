@@ -3,12 +3,9 @@
 	max-width: calc(100vw - 77px);
 	grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
 	grid-gap: 16px;
-	margin-top: 10px;
-	/* margin-bottom: 20px; */
+	margin: 20px auto 0;
 	padding: 0;
 	list-style: none;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 .movieItem {

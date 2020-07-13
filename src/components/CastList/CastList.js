@@ -8,10 +8,10 @@ import getDefaultAvatar from '../../assets/unnamed.jpg';
 //Styles
 import styles from './CastList.module.css';
 
-const CastList = ({ casts }) => {
+const CastList = ({ castsData }) => {
 	return (
 		<ul className={styles.castsList}>
-			{casts.map(({ cast_id, name, profile_path }) => (
+			{castsData.map(({ cast_id, name, profile_path }) => (
 				<li key={cast_id} className={styles.castsListItem}>
 					<img
 						src={profile_path ? `${getPosterUrl}${profile_path}` : getDefaultAvatar}
@@ -26,7 +26,7 @@ const CastList = ({ casts }) => {
 };
 
 CastList.propTypes = {
-	casts: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+	castsData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default CastList;

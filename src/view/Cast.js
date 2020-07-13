@@ -46,7 +46,7 @@ export default class Cast extends Component {
 					<Notification message="We don't have any actors for this movie." />
 				)}
 
-				{casts.length > 0 && <CastList casts={casts} />}
+				{casts.length > 0 && <CastList castsData={casts} />}
 			</>
 		);
 	}

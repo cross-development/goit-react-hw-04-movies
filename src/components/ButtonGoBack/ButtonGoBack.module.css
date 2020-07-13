@@ -1,0 +1,47 @@
+.buttonWrapper {
+	top: -1px;
+	left: 0;
+	position: sticky;
+	z-index: 1100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 50px;
+	padding: 4px 24px;
+	margin-bottom: 26px;
+	color: #fff;
+	background-color: #ff9f43;
+	box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+		0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+.goBackBtn {
+	position: relative;
+	display: inline-block;
+	width: 20em;
+	padding: 0;
+	text-transform: uppercase;
+	line-height: 2em;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	text-shadow: 0 -1px 1px #777;
+	color: #fff;
+	outline: none;
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.7), 0px 1px 1px 0px rgba(0, 0, 0, 0.24),
+		0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+	background: #e67e22;
+}
+
+.goBackBtn:hover {
+	box-shadow: 0 0 0 60px rgba(0, 0, 0, 0) inset, 0.1em 0.1em 0.2em #212121;
+}
+
+.goBackBtn:active {
+	top: 0.1em;
+	left: 0.1em;
+	box-shadow: 0 0 0 30px rgba(0, 0, 0, 0.2) inset;
+}

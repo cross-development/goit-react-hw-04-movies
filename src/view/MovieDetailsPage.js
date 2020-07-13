@@ -1,26 +1,17 @@
 //Core
-import React, { Component, Suspense, lazy } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import React, { Component } from 'react';
 //Views
 import NotFoundPage from './NotFoundPage';
 //Components
 import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
+import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack';
+import MovieDetails from '../components/MovieDetails/MovieDetails';
+import AdditionInfo from '../components/AdditionInfo/AdditionInfo';
 //Services
 import movieApi from '../services/movieApi';
-//Utils
-import getPosterUrl from '../utils/getPosterUrl';
-//Assets
-import getDefaultPoster from '../assets/default_poster.jpg';
 //Routes
 import routes from '../routes';
-//Styles
-import styles from './MovieDetailsPage.module.css';
-//AsyncComponents
-const Cast = lazy(() => import('../view/Cast' /* webpackChunkName: "cast-view" */));
-const Reviews = lazy(() => import('../view/Reviews' /* webpackChunkName: "reviews-view"*/));
-
-//TODO: вынести детали фильма, кнопку гоу бек, доп.инфо с актерами и ревью в отдельные компоненты
 
 export default class MovieDetailsPage extends Component {
 	state = {
@@ -65,70 +56,11 @@ export default class MovieDetailsPage extends Component {
 				<div>
 					{!loading && movie && (
 						<>
-							<div className={styles.buttonWrapper}>
-								<button className={styles.goBackBtn} type="button" onClick={this.handleGoBack}>
-									Go Back
-								</button>
-							</div>
+							<ButtonGoBack onChangeClick={this.handleGoBack} />
 
-							<div className={styles.movieWrapper}>
-								<div className={styles.posterWrapper}>
-									<img
-										src={
-											movie.poster_path ? `${getPosterUrl}${movie.poster_path}` : getDefaultPoster
-										}
-										alt={movie.title || movie.name}
-									/>
-								</div>
+							<MovieDetails movieData={movie} />
 
-								<div className={styles.detailsWrapper}>
-									<h1>
-										{movie.title || movie.name} {movie.release_date.slice(0, 4)}
-									</h1>
-									<p>User Score: {Math.round(movie.popularity)}%</p>
-									<h2>Overview</h2>
-									<p>{movie.overview}</p>
-									<h3>Genres</h3>
-									<p>{movie.genres.map(({ name }) => `${name} `)}</p>
-								</div>
-							</div>
-
-							<div>
-								<h2>Additional information</h2>
-								<ul className={styles.additionalInfoList}>
-									<li className={styles.additionalInfoListItem}>
-										<Link
-											to={{
-												pathname: `${match.url}/${routes.movieCast}`,
-												// state: { from: this.props.location },
-											}}
-											className={styles.additionalInfoLink}
-											activeclassname={styles.additionalInfoLinkActive}
-										>
-											Cast
-										</Link>
-									</li>
-									<li className={styles.additionalInfoListItem}>
-										<Link
-											to={{
-												pathname: `${match.url}/${routes.movieReview}`,
-												// state: { from: this.props.location },
-											}}
-											className={styles.additionalInfoLink}
-											activeclassname={styles.additionalInfoLinkActive}
-										>
-											Reviews
-										</Link>
-									</li>
-								</ul>
-
-								<Suspense fallback={<Loader onLoad={loading} />}>
-									<Switch>
-										<Route path={`${match.path}/cast`} component={Cast} />
-										<Route path={`${match.path}/reviews`} component={Reviews} />
-									</Switch>
-								</Suspense>
-							</div>
+							<AdditionInfo onMatch={match} onLoading={loading} />
 						</>
 					)}
 				</div>

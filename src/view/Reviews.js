@@ -46,7 +46,7 @@ export default class Reviews extends Component {
 					<Notification message="We don't have any reviews for this movie." />
 				)}
 
-				{reviews.length > 0 && <ReviewsList reviews={reviews} />}
+				{reviews.length > 0 && <ReviewsList reviewsData={reviews} />}
 			</>
 		);
 	}
