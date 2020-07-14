@@ -1,6 +1,6 @@
 .errorWrapper {
 	display: block;
-	width: 500px;
+	width: 70%;
 	margin: 5em auto;
 	padding: 10px;
 	text-align: center;
@@ -14,4 +14,10 @@
 	font-size: 18px;
 	line-height: 22px;
 	font-weight: bold;
+}
+
+@media (min-width: 768px) {
+	.errorWrapper {
+		width: 500px;
+	}
 }

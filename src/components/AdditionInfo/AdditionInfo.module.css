@@ -1,3 +1,7 @@
+.additionalTitle {
+	text-align: center;
+}
+
 .additionalInfoList {
 	display: flex;
 	justify-content: space-around;
@@ -43,4 +47,10 @@
 .additionalInfoLink:focus,
 .additionalInfoLinkActive:focus {
 	color: #f39c12;
+}
+
+@media (min-width: 1440px) {
+	.additionalTitle {
+		text-align: left;
+	}
 }

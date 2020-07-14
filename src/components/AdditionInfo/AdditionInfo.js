@@ -11,15 +11,17 @@ const Cast = lazy(() => import('../../view/Cast' /* webpackChunkName: "cast-view
 const Reviews = lazy(() => import('../../view/Reviews' /* webpackChunkName: "reviews-view"*/));
 
 const AdditionInfo = ({ onMatch, onLoading, onLocation }) => {
+	const { state } = onLocation;
+
 	return (
 		<div>
-			<h2>Additional information</h2>
+			<h2 className={styles.additionalTitle}>Additional information</h2>
 			<ul className={styles.additionalInfoList}>
 				<li className={styles.additionalInfoListItem}>
 					<NavLink
 						to={{
 							pathname: `${onMatch.url}/cast`,
-							state: { from: onLocation.state.from },
+							state: { from: state && state.from },
 						}}
 						className={styles.additionalInfoLink}
 						activeClassName={styles.additionalInfoLinkActive}
@@ -31,7 +33,7 @@ const AdditionInfo = ({ onMatch, onLoading, onLocation }) => {
 					<NavLink
 						to={{
 							pathname: `${onMatch.url}/reviews`,
-							state: { from: onLocation.state.from },
+							state: { from: state && state.from },
 						}}
 						className={styles.additionalInfoLink}
 						activeClassName={styles.additionalInfoLinkActive}

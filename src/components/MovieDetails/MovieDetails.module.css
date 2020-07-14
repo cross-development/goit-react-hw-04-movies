@@ -1,18 +1,17 @@
 .movieWrapper {
 	display: flex;
 	flex-wrap: nowrap;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: space-between;
 	align-items: stretch;
 }
 
 .posterWrapper {
 	width: 100%;
-	flex: 0 0 19%;
+	margin-bottom: 15px;
 }
 
 .detailsWrapper {
-	flex: 0 0 78%;
 	align-items: stretch;
 	min-height: 100%;
 	padding: 5px 20px;
@@ -22,4 +21,29 @@
 
 .detailsWrapper h1 {
 	margin-top: 0;
+}
+
+@media (min-width: 768px) {
+	.movieWrapper {
+		flex-direction: row;
+	}
+
+	.posterWrapper {
+		margin-bottom: 0;
+		flex: 0 0 35%;
+	}
+
+	.detailsWrapper {
+		flex: 0 0 63%;
+	}
+}
+
+@media (min-width: 1440px) {
+	.posterWrapper {
+		flex: 0 0 19%;
+	}
+
+	.detailsWrapper {
+		flex: 0 0 78%;
+	}
 }

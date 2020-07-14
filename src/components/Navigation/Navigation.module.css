@@ -1,6 +1,6 @@
 .navigationList {
 	display: flex;
-	width: 20%;
+	width: 100%;
 	justify-content: space-between;
 	align-items: center;
 	list-style: none;
@@ -44,4 +44,16 @@
 .navigationLink:focus,
 .navigationLinkActive:focus {
 	color: #f39c12;
+}
+
+@media (min-width: 768px) {
+	.navigationList {
+		width: 40%;
+	}
+}
+
+@media (min-width: 1440px) {
+	.navigationList {
+		width: 20%;
+	}
 }

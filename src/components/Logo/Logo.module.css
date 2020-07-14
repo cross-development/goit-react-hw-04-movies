@@ -1,7 +1,20 @@
 .logoWrapper {
-	width: 16%;
+	display: none;
 }
 
-.logo {
-	width: 100%;
+@media (min-width: 768px) {
+	.logoWrapper {
+		display: block;
+		width: 30%;
+	}
+
+	.logo {
+		width: 100%;
+	}
+}
+
+@media (min-width: 1440px) {
+	.logoWrapper {
+		width: 16%;
+	}
 }
