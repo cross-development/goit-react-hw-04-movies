@@ -10,7 +10,7 @@ import styles from './AdditionInfo.module.css';
 const Cast = lazy(() => import('../../view/Cast' /* webpackChunkName: "cast-view" */));
 const Reviews = lazy(() => import('../../view/Reviews' /* webpackChunkName: "reviews-view"*/));
 
-const AdditionInfo = ({ onMatch, onLoading }) => {
+const AdditionInfo = ({ onMatch, onLoading, onLocation }) => {
 	return (
 		<div>
 			<h2>Additional information</h2>
@@ -19,7 +19,7 @@ const AdditionInfo = ({ onMatch, onLoading }) => {
 					<NavLink
 						to={{
 							pathname: `${onMatch.url}/cast`,
-							// state: { from: this.props.location },
+							state: { from: onLocation.state.from },
 						}}
 						className={styles.additionalInfoLink}
 						activeClassName={styles.additionalInfoLinkActive}
@@ -31,7 +31,7 @@ const AdditionInfo = ({ onMatch, onLoading }) => {
 					<NavLink
 						to={{
 							pathname: `${onMatch.url}/reviews`,
-							// state: { from: this.props.location },
+							state: { from: onLocation.state.from },
 						}}
 						className={styles.additionalInfoLink}
 						activeClassName={styles.additionalInfoLinkActive}
@@ -53,11 +53,13 @@ const AdditionInfo = ({ onMatch, onLoading }) => {
 
 AdditionInfo.defaultProps = {
 	onMatch: {},
+	onLocation: {},
 	onLoading: false,
 };
 
 AdditionInfo.propTypes = {
 	onMatch: PropTypes.object,
+	onLocation: PropTypes.object,
 	onLoading: PropTypes.bool,
 };
 

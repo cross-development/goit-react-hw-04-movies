@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 //Views
 import NotFoundPage from './NotFoundPage';
 //Components
-import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
+import Notification from '../components/Notification/Notification';
 import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack';
 import MovieDetails from '../components/MovieDetails/MovieDetails';
 import AdditionInfo from '../components/AdditionInfo/AdditionInfo';
@@ -32,10 +32,9 @@ export default class MovieDetailsPage extends Component {
 			.finally(() => this.setState({ loading: false }));
 	}
 
-	//TODO: при нажатии кнопки возврат должен быть на страницу поиска фильмов или на главную, в зависимости откуда пришли
 	handleGoBack = () => {
 		const { location, history } = this.props;
-		//! при переходе на Cast или Reviews возвращает на предыдущее место в истории. Скорее всего проблема в этом месте
+
 		return location.state && location.state.from
 			? history.push(location.state.from)
 			: history.push(routes.home);
@@ -43,7 +42,7 @@ export default class MovieDetailsPage extends Component {
 
 	render() {
 		const { movie, error, loading } = this.state;
-		const { match } = this.props;
+		const { match, location } = this.props;
 
 		return (
 			<>
@@ -60,7 +59,7 @@ export default class MovieDetailsPage extends Component {
 
 							<MovieDetails movieData={movie} />
 
-							<AdditionInfo onMatch={match} onLoading={loading} />
+							<AdditionInfo onMatch={match} onLoading={loading} onLocation={location} />
 						</>
 					)}
 				</div>

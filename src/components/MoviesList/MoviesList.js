@@ -20,7 +20,7 @@ const MoviesList = ({ moviesData, onLocation }) => {
 						className={styles.movieItemLink}
 						to={{
 							pathname: `${routes.movies}/${id}`,
-							state: { from: { onLocation } },
+							state: { from: onLocation },
 						}}
 					>
 						<img
@@ -37,9 +37,13 @@ const MoviesList = ({ moviesData, onLocation }) => {
 	);
 };
 
+MoviesList.defaultProps = {
+	onLocation: {},
+};
+
 MoviesList.propTypes = {
 	moviesData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
-	onLocation: PropTypes.object.isRequired,
+	onLocation: PropTypes.object,
 };
 
 export default MoviesList;
