@@ -28,9 +28,8 @@ export default class SearchForm extends Component {
 			return this.setState({ error: true });
 		}
 
-		this.setState({ error: false });
 		this.props.onSubmit(value);
-		this.setState({ value: '' });
+		this.setState({ value: '', error: false });
 	};
 
 	render() {

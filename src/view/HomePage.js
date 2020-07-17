@@ -1,9 +1,9 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
 import MoviesList from '../components/MoviesList/MoviesList';
+import Notification from '../components/Notification/Notification';
 //Services
 import movieApi from '../services/movieApi';
 

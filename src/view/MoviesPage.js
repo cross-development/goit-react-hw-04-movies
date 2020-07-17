@@ -1,10 +1,10 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Notification from '../components/Notification/Notification';
-import SearchForm from '../components/SearchForm/SearchForm';
 import Loader from '../components/Loader/Loader';
 import MoviesList from '../components/MoviesList/MoviesList';
+import SearchForm from '../components/SearchForm/SearchForm';
+import Notification from '../components/Notification/Notification';
 //Services
 import movieApi from '../services/movieApi';
 //Utils

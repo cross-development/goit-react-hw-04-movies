@@ -15,7 +15,7 @@ export default class Reviews extends Component {
 	};
 
 	componentDidMount() {
-		this.setState({ loading: true });
+		// this.setState({ loading: true });
 
 		const { match } = this.props;
 
@@ -23,15 +23,20 @@ export default class Reviews extends Component {
 			.fetchMoviesReviews(match.params.movieId)
 			.then(reviews => this.setState({ reviews }))
 			.catch(error => this.setState({ error }))
-			.finally(() => this.setState({ loading: false }));
-	}
+			// .finally(() => this.setState({ loading: false }));
 
-	componentDidUpdate(prevProps, prevState) {
 		window.scrollTo({
 			top: `${document.documentElement.clientHeight - 160}`,
 			behavior: 'smooth',
 		});
 	}
+
+	// componentDidUpdate(prevProps, prevState) {
+	// 	window.scrollTo({
+	// 		top: `${document.documentElement.clientHeight - 160}`,
+	// 		behavior: 'smooth',
+	// 	});
+	// }
 
 	render() {
 		const { reviews, error, loading } = this.state;

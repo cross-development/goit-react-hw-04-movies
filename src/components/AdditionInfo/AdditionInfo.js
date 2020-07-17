@@ -61,8 +61,8 @@ AdditionInfo.defaultProps = {
 
 AdditionInfo.propTypes = {
 	onMatch: PropTypes.object,
-	onLocation: PropTypes.object,
 	onLoading: PropTypes.bool,
+	onLocation: PropTypes.object,
 };
 
 export default AdditionInfo;

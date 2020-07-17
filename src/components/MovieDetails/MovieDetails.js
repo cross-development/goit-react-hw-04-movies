@@ -22,7 +22,7 @@ const MovieDetails = ({ movieData }) => {
 
 			<div className={styles.detailsWrapper}>
 				<h1>
-					{title || name} {release_date.slice(0, 4)}
+					{title || name} {release_date.substring(0, 4)}
 				</h1>
 				<p>User Score: {Math.round(popularity)}%</p>
 				<h2>Overview</h2>
