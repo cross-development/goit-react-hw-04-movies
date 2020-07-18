@@ -1,9 +1,9 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Notification from '../components/Notification/Notification';
 import Loader from '../components/Loader/Loader';
 import ReviewsList from '../components/ReviewsList/ReviewsList';
+import Notification from '../components/Notification/Notification';
 //Services
 import movieApi from '../services/movieApi';
 
@@ -15,7 +15,7 @@ export default class Reviews extends Component {
 	};
 
 	componentDidMount() {
-		// this.setState({ loading: true });
+		this.setState({ loading: true });
 
 		const { match } = this.props;
 
@@ -23,20 +23,8 @@ export default class Reviews extends Component {
 			.fetchMoviesReviews(match.params.movieId)
 			.then(reviews => this.setState({ reviews }))
 			.catch(error => this.setState({ error }))
-			// .finally(() => this.setState({ loading: false }));
-
-		window.scrollTo({
-			top: `${document.documentElement.clientHeight - 160}`,
-			behavior: 'smooth',
-		});
+			.finally(() => this.setState({ loading: false }));
 	}
-
-	// componentDidUpdate(prevProps, prevState) {
-	// 	window.scrollTo({
-	// 		top: `${document.documentElement.clientHeight - 160}`,
-	// 		behavior: 'smooth',
-	// 	});
-	// }
 
 	render() {
 		const { reviews, error, loading } = this.state;

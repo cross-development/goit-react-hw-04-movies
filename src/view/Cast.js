@@ -6,7 +6,7 @@ import CastList from '../components/CastList/CastList';
 import Notification from '../components/Notification/Notification';
 //Services
 import movieApi from '../services/movieApi';
-//TODO: исправить загрузку кастов и ревьюх, т.к. при фетче инфо сразу выдает нотификацию, потом дает инфо
+
 export default class Cast extends Component {
 	state = {
 		casts: [],
@@ -15,28 +15,16 @@ export default class Cast extends Component {
 	};
 
 	componentDidMount() {
-		// this.setState({ loading: true });
+		this.setState({ loading: true });
 
 		const { match } = this.props;
 
 		movieApi
 			.fetchMoviesByCast(match.params.movieId)
 			.then(casts => this.setState({ casts }))
-			.catch(error => this.setState({ error }));
-		// .finally(() => this.setState({ loading: false }));
-
-		window.scrollTo({
-			top: `${document.documentElement.clientHeight - 160}`,
-			behavior: 'smooth',
-		});
+			.catch(error => this.setState({ error }))
+			.finally(() => this.setState({ loading: false }));
 	}
-
-	// componentDidUpdate(prevProps, prevState) {
-	// 	window.scrollTo({
-	// 		top: `${document.documentElement.clientHeight - 160}`,
-	// 		behavior: 'smooth',
-	// 	});
-	// }
 
 	render() {
 		const { casts, error, loading } = this.state;

@@ -12,7 +12,7 @@ import AdditionInfo from '../components/AdditionInfo/AdditionInfo';
 import movieApi from '../services/movieApi';
 //Routes
 import routes from '../routes';
-
+//TODO: исправить загрузку кастов и ревьюх, т.к. при фетче инфо сразу выдает нотификацию, потом дает инфо
 export default class MovieDetailsPage extends Component {
 	state = {
 		movie: '',
