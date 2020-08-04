@@ -1,18 +1,16 @@
 //Core
 import React from 'react';
 //Components
-import Logo from '../Logo/Logo';
-import Navigation from '../Navigation/Navigation';
+import Logo from '../Logo';
+import Navigation from '../Navigation';
 //Styles
 import styles from './Header.module.css';
 
-const Header = () => {
-	return (
-		<header className={styles.header}>
-			<Logo />
-			<Navigation />
-		</header>
-	);
-};
+const Header = () => (
+	<header className={styles.header}>
+		<Logo />
+		<Navigation />
+	</header>
+);
 
 export default Header;

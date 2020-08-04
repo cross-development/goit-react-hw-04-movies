@@ -8,22 +8,20 @@ import getDefaultAvatar from '../../assets/unnamed.jpg';
 //Styles
 import styles from './CastList.module.css';
 
-const CastList = ({ castsData }) => {
-	return (
-		<ul className={styles.castsList}>
-			{castsData.map(({ cast_id, name, profile_path }) => (
-				<li key={cast_id} className={styles.castsListItem}>
-					<img
-						src={profile_path ? `${getPosterUrl}${profile_path}` : getDefaultAvatar}
-						alt={name}
-						className={styles.actorAvatar}
-					/>
-					<span className={styles.actorName}>{name}</span>
-				</li>
-			))}
-		</ul>
-	);
-};
+const CastList = ({ castsData }) => (
+	<ul className={styles.list}>
+		{castsData.map(({ cast_id, name, profile_path }) => (
+			<li key={cast_id} className={styles.listItem}>
+				<img
+					src={profile_path ? `${getPosterUrl}${profile_path}` : getDefaultAvatar}
+					alt={name}
+					className={styles.avatar}
+				/>
+				<span>{name}</span>
+			</li>
+		))}
+	</ul>
+);
 
 CastList.propTypes = {
 	castsData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,

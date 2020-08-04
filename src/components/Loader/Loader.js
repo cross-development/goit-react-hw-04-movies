@@ -24,9 +24,9 @@ const customCss = css`
 	}
 `;
 
-const Loader = ({ onLoad }) => {
-	return <PacmanLoader size={50} color={'#f39c12'} loading={onLoad} css={customCss} />;
-};
+const Loader = ({ onLoad }) => (
+	<PacmanLoader size={50} color={'#f39c12'} loading={onLoad} css={customCss} />
+);
 
 Loader.defaultProps = {
 	onLoad: false,

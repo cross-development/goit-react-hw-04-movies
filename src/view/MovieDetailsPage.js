@@ -1,35 +1,34 @@
 //Core
 import React, { Component } from 'react';
-//Views
-import NotFoundPage from './NotFoundPage';
 //Components
-import Loader from '../components/Loader/Loader';
-import Notification from '../components/Notification/Notification';
-import ButtonGoBack from '../components/ButtonGoBack/ButtonGoBack';
-import MovieDetails from '../components/MovieDetails/MovieDetails';
-import AdditionInfo from '../components/AdditionInfo/AdditionInfo';
+import Loader from '../components/Loader';
+import NotFound from '../components/NotFound';
+import Notification from '../components/Notification';
+import ButtonGoBack from '../components/ButtonGoBack';
+import MovieDetails from '../components/MovieDetails';
+import AdditionInfo from '../components/AdditionInfo';
 //Services
 import movieApi from '../services/movieApi';
 //Routes
 import routes from '../routes';
-//TODO: исправить загрузку кастов и ревьюх, т.к. при фетче инфо сразу выдает нотификацию, потом дает инфо
+
 export default class MovieDetailsPage extends Component {
 	state = {
 		movie: '',
 		error: null,
-		loading: false,
+		isLoading: false,
 	};
 
 	componentDidMount() {
 		const { match } = this.props;
 
-		this.setState({ loading: true });
+		this.setState({ isLoading: true });
 
 		movieApi
 			.fetchMoviesDetails(match.params.movieId)
 			.then(movie => this.setState({ movie }))
 			.catch(error => this.setState({ error }))
-			.finally(() => this.setState({ loading: false }));
+			.finally(() => this.setState({ isLoading: false }));
 	}
 
 	handleGoBack = () => {
@@ -41,25 +40,25 @@ export default class MovieDetailsPage extends Component {
 	};
 
 	render() {
-		const { movie, error, loading } = this.state;
+		const { movie, error, isLoading } = this.state;
 		const { match, location } = this.props;
 
 		return (
 			<>
 				{error && <Notification message={error.message} />}
 
-				{loading && <Loader onLoad={loading} />}
+				{isLoading && <Loader onLoad={isLoading} />}
 
-				{movie === null && <NotFoundPage />}
+				{movie === null && <NotFound />}
 
 				<div>
-					{!loading && movie && (
+					{!isLoading && movie && (
 						<>
 							<ButtonGoBack onChangeClick={this.handleGoBack} />
 
 							<MovieDetails movieData={movie} />
 
-							<AdditionInfo onMatch={match} onLoading={loading} onLocation={location} />
+							<AdditionInfo onMatch={match} onLoading={isLoading} onLocation={location} />
 						</>
 					)}
 				</div>

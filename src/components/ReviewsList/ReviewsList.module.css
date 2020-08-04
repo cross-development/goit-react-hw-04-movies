@@ -1,4 +1,4 @@
-.reviewList {
+.list {
 	list-style: none;
 	display: flex;
 	flex-direction: column;
@@ -6,7 +6,7 @@
 	padding: 0;
 }
 
-.reviewItem {
+.listItem {
 	border-radius: 2px;
 	text-align: center;
 	padding: 2px 2px 10px;
@@ -17,24 +17,24 @@
 		0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
-.reviewItem:last-child {
+.listItem:last-child {
 	margin-bottom: 0;
 }
 
-.reviewItem:hover {
+.listItem:hover {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, 0.22);
 }
 
-.reviewItemTitle {
+.title {
 	margin: 0 0 10px;
 	text-align: left;
 }
 
-.reviewItemTitle a {
+.title a {
 	color: #000;
 }
 
-.reviewItemContent {
+.reviews {
 	text-align: justify;
 	margin: 0;
 }

@@ -1,10 +1,10 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Loader from '../components/Loader/Loader';
-import MoviesList from '../components/MoviesList/MoviesList';
-import SearchForm from '../components/SearchForm/SearchForm';
-import Notification from '../components/Notification/Notification';
+import Loader from '../components/Loader';
+import MoviesList from '../components/MoviesList';
+import SearchForm from '../components/SearchForm';
+import Notification from '../components/Notification';
 //Services
 import movieApi from '../services/movieApi';
 //Utils
@@ -14,7 +14,7 @@ export default class MoviesPage extends Component {
 	state = {
 		movies: [],
 		error: null,
-		loading: false,
+		isLoading: false,
 	};
 
 	componentDidMount() {
@@ -31,13 +31,13 @@ export default class MoviesPage extends Component {
 	}
 
 	fetchMovies = query => {
-		this.setState({ loading: true });
+		this.setState({ isLoading: true });
 
 		movieApi
 			.fetchMoviesByQuery(query)
 			.then(movies => this.setState({ movies }))
 			.catch(error => this.setState({ error }))
-			.finally(() => this.setState({ loading: false }));
+			.finally(() => this.setState({ isLoading: false }));
 	};
 
 	handleChangeByQuery = query => {
@@ -48,7 +48,7 @@ export default class MoviesPage extends Component {
 	};
 
 	render() {
-		const { movies, error, loading } = this.state;
+		const { movies, error, isLoading } = this.state;
 		const { location } = this.props;
 
 		return (
@@ -57,9 +57,11 @@ export default class MoviesPage extends Component {
 
 				{error && <Notification message={error.message} />}
 
-				{loading && <Loader onLoad={loading} />}
+				{isLoading && <Loader onLoad={isLoading} />}
 
-				{!loading && movies.length > 0 && <MoviesList moviesData={movies} onLocation={location} />}
+				{!isLoading && movies.length > 0 && (
+					<MoviesList moviesData={movies} onLocation={location} />
+				)}
 			</>
 		);
 	}

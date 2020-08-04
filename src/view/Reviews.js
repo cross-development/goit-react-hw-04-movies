@@ -1,9 +1,9 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Loader from '../components/Loader/Loader';
-import ReviewsList from '../components/ReviewsList/ReviewsList';
-import Notification from '../components/Notification/Notification';
+import Loader from '../components/Loader';
+import ReviewsList from '../components/ReviewsList';
+import Notification from '../components/Notification';
 //Services
 import movieApi from '../services/movieApi';
 
@@ -11,31 +11,31 @@ export default class Reviews extends Component {
 	state = {
 		reviews: [],
 		error: null,
-		loading: false,
+		isLoading: false,
 	};
 
 	componentDidMount() {
-		this.setState({ loading: true });
-
 		const { match } = this.props;
+
+		this.setState({ isLoading: true });
 
 		movieApi
 			.fetchMoviesReviews(match.params.movieId)
 			.then(reviews => this.setState({ reviews }))
 			.catch(error => this.setState({ error }))
-			.finally(() => this.setState({ loading: false }));
+			.finally(() => this.setState({ isLoading: false }));
 	}
 
 	render() {
-		const { reviews, error, loading } = this.state;
+		const { reviews, error, isLoading } = this.state;
 
 		return (
 			<>
 				{error && <Notification message={error.message} />}
 
-				{loading && <Loader onLoad={loading} />}
+				{isLoading && <Loader onLoad={isLoading} />}
 
-				{!loading && !error && reviews.length < 1 && (
+				{!isLoading && !error && reviews.length < 1 && (
 					<Notification message="We don't have any reviews for this movie." />
 				)}
 

@@ -1,57 +1,52 @@
 //Core
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, NavLink } from 'react-router-dom';
 //Component
-import Loader from '../../components/Loader/Loader';
+import Loader from '../../components/Loader';
 //Styles
 import styles from './AdditionInfo.module.css';
 //AsyncComponents
-const Cast = lazy(() => import('../../view/Cast' /* webpackChunkName: "cast-view" */));
-const Reviews = lazy(() => import('../../view/Reviews' /* webpackChunkName: "reviews-view"*/));
+import asyncComponents from '../../services/asyncComponents';
 
-const AdditionInfo = ({ onMatch, onLoading, onLocation }) => {
-	const { state } = onLocation;
+const AdditionInfo = ({ onMatch, onLoading, onLocation }) => (
+	<div>
+		<h2 className={styles.title}>Additional information</h2>
+		<ul className={styles.list}>
+			<li className={styles.listItem}>
+				<NavLink
+					to={{
+						pathname: `${onMatch.url}/cast`,
+						state: { from: onLocation.state && onLocation.state.from },
+					}}
+					className={styles.itemLink}
+					activeClassName={styles.itemLinkActive}
+				>
+					Cast
+				</NavLink>
+			</li>
+			<li className={styles.listItem}>
+				<NavLink
+					to={{
+						pathname: `${onMatch.url}/reviews`,
+						state: { from: onLocation.state && onLocation.state.from },
+					}}
+					className={styles.itemLink}
+					activeClassName={styles.itemLinkActive}
+				>
+					Reviews
+				</NavLink>
+			</li>
+		</ul>
 
-	return (
-		<div>
-			<h2 className={styles.additionalTitle}>Additional information</h2>
-			<ul className={styles.additionalInfoList}>
-				<li className={styles.additionalInfoListItem}>
-					<NavLink
-						to={{
-							pathname: `${onMatch.url}/cast`,
-							state: { from: state && state.from },
-						}}
-						className={styles.additionalInfoLink}
-						activeClassName={styles.additionalInfoLinkActive}
-					>
-						Cast
-					</NavLink>
-				</li>
-				<li className={styles.additionalInfoListItem}>
-					<NavLink
-						to={{
-							pathname: `${onMatch.url}/reviews`,
-							state: { from: state && state.from },
-						}}
-						className={styles.additionalInfoLink}
-						activeClassName={styles.additionalInfoLinkActive}
-					>
-						Reviews
-					</NavLink>
-				</li>
-			</ul>
-
-			<Suspense fallback={<Loader onLoad={onLoading} />}>
-				<Switch>
-					<Route path={`${onMatch.path}/cast`} component={Cast} />
-					<Route path={`${onMatch.path}/reviews`} component={Reviews} />
-				</Switch>
-			</Suspense>
-		</div>
-	);
-};
+		<Suspense fallback={<Loader onLoad={onLoading} />}>
+			<Switch>
+				<Route path={`${onMatch.path}/cast`} component={asyncComponents.Cast} />
+				<Route path={`${onMatch.path}/reviews`} component={asyncComponents.Reviews} />
+			</Switch>
+		</Suspense>
+	</div>
+);
 
 AdditionInfo.defaultProps = {
 	onMatch: {},

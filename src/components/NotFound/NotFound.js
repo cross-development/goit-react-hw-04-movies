@@ -8,15 +8,13 @@ import routes from '../../routes';
 //Style
 import styles from './NotFound.module.css';
 
-const NotFound = () => {
-	return (
-		<div className={styles.imgWrapper}>
-			<img src={imgPath} alt="Page not found" className={styles.pageImg} />
-			<h2 className={styles.title}>
-				Ooops! Something went wrong. Please go to <Link to={routes.home}>homepage</Link>.
-			</h2>
-		</div>
-	);
-};
+const NotFound = () => (
+	<div className={styles.imgWrapper}>
+		<img src={imgPath} alt="Page not found" className={styles.image} />
+		<h2 className={styles.title}>
+			Ooops! Something went wrong. Please go to <Link to={routes.home}>homepage</Link>.
+		</h2>
+	</div>
+);
 
 export default NotFound;

@@ -6,33 +6,29 @@ import routes from '../../routes';
 //Styles
 import styles from './Navigation.module.css';
 
-const Navigation = () => {
-	const { home, movies } = routes;
+const Navigation = () => (
+	<ul className={styles.navList}>
+		<li className={styles.navListItem}>
+			<NavLink
+				exact
+				to={routes.home}
+				className={styles.navLink}
+				activeClassName={styles.navLinkActive}
+			>
+				Home
+			</NavLink>
+		</li>
 
-	return (
-		<ul className={styles.navigationList}>
-			<li className={styles.navigationListItem}>
-				<NavLink
-					exact
-					to={home}
-					className={styles.navigationLink}
-					activeClassName={styles.navigationLinkActive}
-				>
-					Home
-				</NavLink>
-			</li>
-
-			<li className={styles.navigationListItem}>
-				<NavLink
-					to={movies}
-					className={styles.navigationLink}
-					activeClassName={styles.navigationLinkActive}
-				>
-					Movies
-				</NavLink>
-			</li>
-		</ul>
-	);
-};
+		<li className={styles.navListItem}>
+			<NavLink
+				to={routes.movies}
+				className={styles.navLink}
+				activeClassName={styles.navLinkActive}
+			>
+				Movies
+			</NavLink>
+		</li>
+	</ul>
+);
 
 export default Navigation;

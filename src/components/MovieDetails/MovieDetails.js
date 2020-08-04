@@ -11,24 +11,27 @@ import styles from './MovieDetails.module.css';
 const MovieDetails = ({ movieData }) => {
 	const { poster_path, title, name, release_date, popularity, overview, genres } = movieData;
 
+	const posterPath = poster_path ? `${getPosterUrl}${poster_path}` : getDefaultPoster;
+	const movieTitle = title || name;
+	const releaseDate = release_date.substring(0, 4);
+	const userScore = Math.round(popularity);
+	const genresList = genres.map(({ name }) => `${name} `);
+
 	return (
 		<div className={styles.movieWrapper}>
 			<div className={styles.posterWrapper}>
-				<img
-					src={poster_path ? `${getPosterUrl}${poster_path}` : getDefaultPoster}
-					alt={title || name}
-				/>
+				<img src={posterPath} alt={movieTitle} />
 			</div>
 
 			<div className={styles.detailsWrapper}>
 				<h1>
-					{title || name} {release_date.substring(0, 4)}
+					{movieTitle} ({releaseDate})
 				</h1>
-				<p>User Score: {Math.round(popularity)}%</p>
+				<p>User Score: {userScore}%</p>
 				<h2>Overview</h2>
 				<p>{overview}</p>
 				<h3>Genres</h3>
-				<p>{genres.map(({ name }) => `${name} `)}</p>
+				<p>{genresList}</p>
 			</div>
 		</div>
 	);

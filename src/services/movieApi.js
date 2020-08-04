@@ -18,7 +18,7 @@ const fetchMoviesByQuery = searchQuery => {
 		.then(data => data.results);
 };
 
-//Получает детали выбранного фильма. Если в ответ не пришел статус из диапазона 200 - 299, возвращает nall. Иначе страница крешится
+//Получает детали выбранного фильма. Если в ответ не пришел статус 'OK', возвращает null. Без этого страница крешится
 const fetchMoviesDetails = movieId => {
 	return fetch(`${baseURL}/movie/${movieId}?api_key=${API_KEY}&language=en-US`).then(response =>
 		response.ok ? response.json() : null,
