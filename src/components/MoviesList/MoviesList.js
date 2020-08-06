@@ -11,7 +11,7 @@ import routes from '../../routes';
 //Style
 import styles from './MoviesList.module.css';
 
-const MoviesList = ({ moviesData, onLocation }) => (
+const MoviesList = ({ moviesData, location }) => (
 	<ul className={styles.list}>
 		{moviesData.map(({ id, poster_path, name, title, vote_average }) => (
 			<li className={styles.listItem} key={id}>
@@ -19,7 +19,7 @@ const MoviesList = ({ moviesData, onLocation }) => (
 					className={styles.itemLink}
 					to={{
 						pathname: `${routes.movies}/${id}`,
-						state: { from: onLocation },
+						state: { from: location },
 					}}
 				>
 					<img
@@ -36,12 +36,12 @@ const MoviesList = ({ moviesData, onLocation }) => (
 );
 
 MoviesList.defaultProps = {
-	onLocation: {},
+	location: {},
 };
 
 MoviesList.propTypes = {
-	onLocation: PropTypes.object,
-	moviesData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+	location: PropTypes.object,
+	moviesData: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any).isRequired).isRequired,
 };
 
 export default MoviesList;

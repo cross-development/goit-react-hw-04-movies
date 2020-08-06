@@ -54,7 +54,7 @@ export default class SearchForm extends Component {
 					</form>
 				</div>
 
-				{hasError && <Notification message="Please enter any movie title" />}
+				{hasError && <Notification message="Please enter any movie name" />}
 			</>
 		);
 	}

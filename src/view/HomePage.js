@@ -26,7 +26,6 @@ export default class HomePage extends Component {
 
 	render() {
 		const { movies, error, isLoading } = this.state;
-		const { location } = this.props;
 
 		return (
 			<>
@@ -34,9 +33,7 @@ export default class HomePage extends Component {
 
 				{isLoading && <Loader onLoad={isLoading} />}
 
-				{!isLoading && movies.length > 0 && (
-					<MoviesList moviesData={movies} onLocation={location} />
-				)}
+				{!isLoading && movies.length > 0 && <MoviesList {...this.props} moviesData={movies} />}
 			</>
 		);
 	}

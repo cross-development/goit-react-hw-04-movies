@@ -38,7 +38,7 @@ const MovieDetails = ({ movieData }) => {
 };
 
 MovieDetails.propTypes = {
-	movieData: PropTypes.object.isRequired,
+	movieData: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 
 export default MovieDetails;

@@ -24,7 +24,7 @@ const CastList = ({ castsData }) => (
 );
 
 CastList.propTypes = {
-	castsData: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+	castsData: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any).isRequired).isRequired,
 };
 
 export default CastList;

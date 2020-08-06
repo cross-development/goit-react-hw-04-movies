@@ -41,7 +41,6 @@ export default class MovieDetailsPage extends Component {
 
 	render() {
 		const { movie, error, isLoading } = this.state;
-		const { match, location } = this.props;
 
 		return (
 			<>
@@ -58,7 +57,7 @@ export default class MovieDetailsPage extends Component {
 
 							<MovieDetails movieData={movie} />
 
-							<AdditionInfo onMatch={match} onLoading={isLoading} onLocation={location} />
+							<AdditionInfo {...this.props} onLoading={isLoading} />
 						</>
 					)}
 				</div>

@@ -9,15 +9,16 @@ import styles from './AdditionInfo.module.css';
 //AsyncComponents
 import asyncComponents from '../../services/asyncComponents';
 
-const AdditionInfo = ({ onMatch, onLoading, onLocation }) => (
+const AdditionInfo = ({ location, match, onLoading }) => (
 	<div>
 		<h2 className={styles.title}>Additional information</h2>
+
 		<ul className={styles.list}>
 			<li className={styles.listItem}>
 				<NavLink
 					to={{
-						pathname: `${onMatch.url}/cast`,
-						state: { from: onLocation.state && onLocation.state.from },
+						pathname: `${match.url}/cast`,
+						state: { from: location.state && location.state.from },
 					}}
 					className={styles.itemLink}
 					activeClassName={styles.itemLinkActive}
@@ -25,11 +26,12 @@ const AdditionInfo = ({ onMatch, onLoading, onLocation }) => (
 					Cast
 				</NavLink>
 			</li>
+
 			<li className={styles.listItem}>
 				<NavLink
 					to={{
-						pathname: `${onMatch.url}/reviews`,
-						state: { from: onLocation.state && onLocation.state.from },
+						pathname: `${match.url}/reviews`,
+						state: { from: location.state && location.state.from },
 					}}
 					className={styles.itemLink}
 					activeClassName={styles.itemLinkActive}
@@ -41,23 +43,23 @@ const AdditionInfo = ({ onMatch, onLoading, onLocation }) => (
 
 		<Suspense fallback={<Loader onLoad={onLoading} />}>
 			<Switch>
-				<Route path={`${onMatch.path}/cast`} component={asyncComponents.Cast} />
-				<Route path={`${onMatch.path}/reviews`} component={asyncComponents.Reviews} />
+				<Route path={`${match.path}/cast`} component={asyncComponents.Cast} />
+				<Route path={`${match.path}/reviews`} component={asyncComponents.Reviews} />
 			</Switch>
 		</Suspense>
 	</div>
 );
 
 AdditionInfo.defaultProps = {
-	onMatch: {},
-	onLocation: {},
+	match: {},
+	location: {},
 	onLoading: false,
 };
 
 AdditionInfo.propTypes = {
-	onMatch: PropTypes.object,
+	match: PropTypes.object,
+	location: PropTypes.object,
 	onLoading: PropTypes.bool,
-	onLocation: PropTypes.object,
 };
 
 export default AdditionInfo;

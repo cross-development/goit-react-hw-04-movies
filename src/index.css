@@ -1,13 +1,13 @@
-html {
-	box-sizing: border-box;
-	width: 100vw;
-	overflow-x: hidden;
-}
-
 *,
 *::before,
 *::after {
 	box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+	width: 100vw;
+	overflow-x: hidden;
 }
 
 body {
