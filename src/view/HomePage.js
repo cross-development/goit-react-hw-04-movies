@@ -1,11 +1,11 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Loader from '../components/Loader/Loader';
-import MoviesList from '../components/MoviesList/MoviesList';
-import Notification from '../components/Notification/Notification';
+import Loader from 'components/Loader';
+import MoviesList from 'components/MoviesList';
+import Notification from 'components/Notification';
 //Services
-import movieApi from '../services/movieApi';
+import movieApi from 'services/movieApi';
 
 export default class HomePage extends Component {
 	state = {

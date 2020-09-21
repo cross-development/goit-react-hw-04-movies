@@ -1,11 +1,11 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Loader from '../components/Loader';
-import ReviewsList from '../components/ReviewsList';
-import Notification from '../components/Notification';
+import Loader from 'components/Loader';
+import ReviewsList from 'components/ReviewsList';
+import Notification from 'components/Notification';
 //Services
-import movieApi from '../services/movieApi';
+import movieApi from 'services/movieApi';
 
 export default class Reviews extends Component {
 	state = {

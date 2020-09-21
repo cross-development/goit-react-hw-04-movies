@@ -3,11 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 //Utils
-import getPosterUrl from '../../utils/getPosterUrl';
+import posterUrl from 'utils/getPosterUrl';
 //Assets
-import getDefaultPoster from '../../assets/default_poster.jpg';
+import defaultPoster from 'assets/default_poster.jpg';
 //Routes
-import routes from '../../routes';
+import routes from 'routes';
 //Style
 import styles from './MoviesList.module.css';
 
@@ -24,7 +24,7 @@ const MoviesList = ({ moviesData, location }) => (
 				>
 					<img
 						className={styles.itemImage}
-						src={poster_path ? `${getPosterUrl}${poster_path}` : getDefaultPoster}
+						src={poster_path ? `${posterUrl}${poster_path}` : defaultPoster}
 						alt={name || title}
 					/>
 					<span>{name || title}</span>
@@ -40,7 +40,7 @@ MoviesList.defaultProps = {
 };
 
 MoviesList.propTypes = {
-	location: PropTypes.object,
+	location: PropTypes.objectOf(PropTypes.any),
 	moviesData: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.any).isRequired).isRequired,
 };
 

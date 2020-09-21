@@ -2,9 +2,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 //Assets
-import logoPath from '../../assets/movie_logo.png';
+import logoPath from 'assets/movie_logo.png';
 //Routes
-import routes from '../../routes';
+import routes from 'routes';
 //Styles
 import styles from './Logo.module.css';
 

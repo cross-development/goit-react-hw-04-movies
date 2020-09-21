@@ -1,16 +1,16 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Loader from '../components/Loader';
-import NotFound from '../components/NotFound';
-import Notification from '../components/Notification';
-import ButtonGoBack from '../components/ButtonGoBack';
-import MovieDetails from '../components/MovieDetails';
-import AdditionInfo from '../components/AdditionInfo';
+import Loader from 'components/Loader';
+import NotFound from 'components/NotFound';
+import Notification from 'components/Notification';
+import ButtonGoBack from 'components/ButtonGoBack';
+import MovieDetails from 'components/MovieDetails';
+import AdditionInfo from 'components/AdditionInfo';
 //Services
-import movieApi from '../services/movieApi';
+import movieApi from 'services/movieApi';
 //Routes
-import routes from '../routes';
+import routes from 'routes';
 
 export default class MovieDetailsPage extends Component {
 	state = {
@@ -50,17 +50,15 @@ export default class MovieDetailsPage extends Component {
 
 				{movie === null && <NotFound />}
 
-				<div>
-					{!isLoading && movie && (
-						<>
-							<ButtonGoBack onChangeClick={this.handleGoBack} />
+				{!isLoading && movie && (
+					<>
+						<ButtonGoBack onChangeClick={this.handleGoBack} />
 
-							<MovieDetails movieData={movie} />
+						<MovieDetails movieData={movie} />
 
-							<AdditionInfo {...this.props} onLoading={isLoading} />
-						</>
-					)}
-				</div>
+						<AdditionInfo {...this.props} isLoading={isLoading} />
+					</>
+				)}
 			</>
 		);
 	}

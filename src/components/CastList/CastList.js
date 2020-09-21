@@ -2,9 +2,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //Utils
-import getPosterUrl from '../../utils/getPosterUrl';
+import posterUrl from 'utils/getPosterUrl';
 //Assets
-import getDefaultAvatar from '../../assets/unnamed.jpg';
+import getDefaultAvatar from 'assets/unnamed.jpg';
 //Styles
 import styles from './CastList.module.css';
 
@@ -13,7 +13,7 @@ const CastList = ({ castsData }) => (
 		{castsData.map(({ cast_id, name, profile_path }) => (
 			<li key={cast_id} className={styles.listItem}>
 				<img
-					src={profile_path ? `${getPosterUrl}${profile_path}` : getDefaultAvatar}
+					src={profile_path ? `${posterUrl}${profile_path}` : getDefaultAvatar}
 					alt={name}
 					className={styles.avatar}
 				/>

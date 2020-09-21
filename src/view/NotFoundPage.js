@@ -1,7 +1,7 @@
 //Core
 import React from 'react';
 //Components
-import NotFound from '../components/NotFound';
+import NotFound from 'components/NotFound';
 
 const NotFoundPage = () => <NotFound />;
 

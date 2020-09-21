@@ -1,14 +1,14 @@
 //Core
 import React, { Component } from 'react';
 //Components
-import Loader from '../components/Loader';
-import MoviesList from '../components/MoviesList';
-import SearchForm from '../components/SearchForm';
-import Notification from '../components/Notification';
+import Loader from 'components/Loader';
+import MoviesList from 'components/MoviesList';
+import SearchForm from 'components/SearchForm';
+import Notification from 'components/Notification';
 //Services
-import movieApi from '../services/movieApi';
+import movieApi from 'services/movieApi';
 //Utils
-import getQueryString from '../utils/getQueryString';
+import getQueryString from 'utils/getQueryString';
 
 export default class MoviesPage extends Component {
 	state = {
@@ -20,14 +20,14 @@ export default class MoviesPage extends Component {
 	componentDidMount() {
 		const { query } = getQueryString(this.props.location.search);
 
-		return query ? this.fetchMovies(query) : '';
+		return query ? this.fetchMovies(query) : null;
 	}
 
 	componentDidUpdate(prevProps, prevState) {
 		const { query: prevQuery } = getQueryString(prevProps.location.search);
 		const { query: nextQuery } = getQueryString(this.props.location.search);
 
-		return prevQuery !== nextQuery ? this.fetchMovies(nextQuery) : '';
+		return prevQuery !== nextQuery ? this.fetchMovies(nextQuery) : null;
 	}
 
 	fetchMovies = query => {
@@ -41,8 +41,10 @@ export default class MoviesPage extends Component {
 	};
 
 	handleChangeByQuery = query => {
-		this.props.history.push({
-			pathname: this.props.location.pathname,
+		const { history, location } = this.props;
+
+		history.push({
+			pathname: location.pathname,
 			search: `query=${query}`,
 		});
 	};

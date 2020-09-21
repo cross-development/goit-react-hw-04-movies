@@ -6,9 +6,9 @@ import Layout from '../Layout';
 import Header from '../Header';
 import Loader from '../Loader';
 //Routes
-import routes from '../../routes';
+import routes from 'routes';
 //Services
-import asyncComponents from '../../services/asyncComponents';
+import asyncComponents from 'services/asyncComponents';
 
 const App = () => (
 	<Layout>

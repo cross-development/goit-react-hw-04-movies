@@ -3,13 +3,13 @@ import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch, NavLink } from 'react-router-dom';
 //Component
-import Loader from '../../components/Loader';
+import Loader from 'components/Loader';
 //Styles
 import styles from './AdditionInfo.module.css';
 //AsyncComponents
-import asyncComponents from '../../services/asyncComponents';
+import asyncComponents from 'services/asyncComponents';
 
-const AdditionInfo = ({ location, match, onLoading }) => (
+const AdditionInfo = ({ location, match, isLoading }) => (
 	<div>
 		<h2 className={styles.title}>Additional information</h2>
 
@@ -41,7 +41,7 @@ const AdditionInfo = ({ location, match, onLoading }) => (
 			</li>
 		</ul>
 
-		<Suspense fallback={<Loader onLoad={onLoading} />}>
+		<Suspense fallback={<Loader onLoad={isLoading} />}>
 			<Switch>
 				<Route path={`${match.path}/cast`} component={asyncComponents.Cast} />
 				<Route path={`${match.path}/reviews`} component={asyncComponents.Reviews} />
@@ -53,13 +53,13 @@ const AdditionInfo = ({ location, match, onLoading }) => (
 AdditionInfo.defaultProps = {
 	match: {},
 	location: {},
-	onLoading: false,
+	isLoading: false,
 };
 
 AdditionInfo.propTypes = {
-	match: PropTypes.object,
-	location: PropTypes.object,
-	onLoading: PropTypes.bool,
+	isLoading: PropTypes.bool,
+	match: PropTypes.objectOf(PropTypes.any),
+	location: PropTypes.objectOf(PropTypes.any),
 };
 
 export default AdditionInfo;

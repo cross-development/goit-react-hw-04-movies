@@ -16,7 +16,7 @@ export default class SearchForm extends Component {
 		hasError: false,
 	};
 
-	handleChange = e => this.setState({ value: e.target.value });
+	handleChange = ({ target: { value } }) => this.setState({ value });
 
 	handleSubmit = e => {
 		e.preventDefault();
@@ -39,12 +39,12 @@ export default class SearchForm extends Component {
 				<div className={styles.searchbar}>
 					<form onSubmit={this.handleSubmit} className={styles.form}>
 						<input
-							className={styles.input}
 							autoFocus
 							type="text"
-							autoComplete="off"
-							placeholder="Search movie..."
 							value={value}
+							autoComplete="off"
+							className={styles.input}
+							placeholder="Search movie..."
 							onChange={this.handleChange}
 						/>
 
