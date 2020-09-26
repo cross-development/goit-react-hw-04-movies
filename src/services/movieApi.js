@@ -41,8 +41,8 @@ const fetchMoviesReviews = movieId => {
 
 export default {
 	fetchTrendMovies,
-	fetchMoviesByQuery,
-	fetchMoviesDetails,
 	fetchMoviesByCast,
+	fetchMoviesDetails,
+	fetchMoviesByQuery,
 	fetchMoviesReviews,
 };

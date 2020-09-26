@@ -50,7 +50,10 @@ export default class MoviesPage extends Component {
 	};
 
 	render() {
-		const { movies, error, isLoading } = this.state;
+		const {
+			state: { movies, error, isLoading },
+			props: { location },
+		} = this;
 
 		return (
 			<>
@@ -60,7 +63,7 @@ export default class MoviesPage extends Component {
 
 				{isLoading && <Loader onLoad={isLoading} />}
 
-				{!isLoading && movies.length > 0 && <MoviesList {...this.props} moviesData={movies} />}
+				{!isLoading && movies.length > 0 && <MoviesList location={location} moviesData={movies} />}
 			</>
 		);
 	}

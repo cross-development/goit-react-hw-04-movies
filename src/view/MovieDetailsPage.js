@@ -40,7 +40,10 @@ export default class MovieDetailsPage extends Component {
 	};
 
 	render() {
-		const { movie, error, isLoading } = this.state;
+		const {
+			state: { movie, error, isLoading },
+			props: { location, match },
+		} = this;
 
 		return (
 			<>
@@ -56,7 +59,7 @@ export default class MovieDetailsPage extends Component {
 
 						<MovieDetails movieData={movie} />
 
-						<AdditionInfo {...this.props} isLoading={isLoading} />
+						<AdditionInfo location={location} match={match} isLoading={isLoading} />
 					</>
 				)}
 			</>

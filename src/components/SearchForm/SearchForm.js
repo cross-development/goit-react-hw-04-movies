@@ -39,6 +39,7 @@ export default class SearchForm extends Component {
 				<div className={styles.searchbar}>
 					<form onSubmit={this.handleSubmit} className={styles.form}>
 						<input
+							required
 							autoFocus
 							type="text"
 							value={value}
